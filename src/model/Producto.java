@@ -3,7 +3,7 @@ package model;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
-public abstract class Producto {
+public abstract class Producto implements Taxable,Comparable<Producto>{
 
 	// Atributos
 	private String codigo;
@@ -82,6 +82,22 @@ public abstract class Producto {
 		}
 
 		return false;
+
+	}
+
+	@Override
+	public int compareTo(Producto p2){
+
+		if(this.precio>p2.getPrecio()){
+
+			return -1;
+		}else if(this.precio<p2.getPrecio()){
+
+
+			return 1;
+		}
+
+		return 0;
 
 	}
 

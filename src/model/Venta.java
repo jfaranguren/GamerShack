@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 public class Venta{
 	
 	private double valorTotal;
-	private double valorIVA;
+	private double valorImpuesto;
 	private int cantidadVendida;
 	private Producto productoVendido;
 	private Calendar fechaDeVenta;
@@ -14,8 +14,8 @@ public class Venta{
 	public Venta(int cantidadVendida, Producto productoVendido){
 		
 		double subTotal = cantidadVendida*productoVendido.getPrecio();
-		valorIVA = subTotal*0.19;	
-		valorTotal=subTotal+valorIVA;
+		valorImpuesto = productoVendido.calcularImpuesto(subTotal);	
+		valorTotal=subTotal+valorImpuesto;
 		this.cantidadVendida = cantidadVendida;
 		this.productoVendido = productoVendido;
 		fechaDeVenta = Calendar.getInstance();

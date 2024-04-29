@@ -27,4 +27,11 @@ public class Juego extends Producto {
 
     }
 
+    @Override
+    public double calcularImpuesto(double valor) {
+       
+        return valor*RETEFUENTE;
+
+    }
+
 }

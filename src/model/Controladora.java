@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class Controladora {
 
 	// Relacion
@@ -11,11 +13,12 @@ public class Controladora {
 		almacenamiento = new Producto[1000];
 		ventas = new Venta[10];
 		crearCasosDePrueba();
+		
 
 	}
 
 	public String listarProductos() {
-
+		ordenarAlamacenamiento();
 		String lista = "";
 
 		for (int i = 0; i < almacenamiento.length; i++) {
@@ -69,13 +72,13 @@ public class Controladora {
 
 	public boolean almacenarJuego(String codigo, String nombre, double precio, int cantidad, int genero) {
 
-		Juego nuevoProducto = new Juego(codigo, nombre, precio, cantidad, Genero.values()[genero - 1]);
+		//Juego nuevoProducto = 
 
 		for (int i = 0; i < almacenamiento.length; i++) {
 
 			if (almacenamiento[i] == null) {
 
-				almacenamiento[i] = nuevoProducto;
+				almacenamiento[i] = new Juego(codigo, nombre, precio, cantidad, Genero.values()[genero - 1]);
 				return true;
 
 			} else if (almacenamiento[i].getCodigo().equals(codigo)) {
@@ -135,8 +138,9 @@ public class Controladora {
 	public void crearCasosDePrueba() {
 
 		almacenarConsola("1", "PlayStation 6", 7000000, 12, "Sony");
-		almacenarConsola("2", "Nintendo Switch 2", 3000000, 6, "Nintendo");
 		almacenarJuego("3", "GTA 6", 400000, 20, 3);
+		almacenarConsola("2", "Nintendo Switch 2", 3000000, 6, "Nintendo");
+	
 	}
 
 	public boolean modificarPrecioProducto(String codigo, double precio) {
@@ -299,7 +303,11 @@ public class Controladora {
 		return msg;
 	}
 
+	public void ordenarAlamacenamiento(){
 
+		Arrays.sort(almacenamiento);
+
+	}
 
 
 
