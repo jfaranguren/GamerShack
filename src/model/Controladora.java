@@ -13,18 +13,20 @@ public class Controladora {
 		almacenamiento = new Producto[1000];
 		ventas = new Venta[10];
 		crearCasosDePrueba();
-		
+		ordenarAlamacenamiento();
 
 	}
 
 	public String listarProductos() {
-		ordenarAlamacenamiento();
+
+		Producto[] almacenamientoSinNull = ordenarAlamacenamiento();
+
 		String lista = "";
 
-		for (int i = 0; i < almacenamiento.length; i++) {
+		for (int i = 0; i < almacenamientoSinNull.length; i++) {
 
-			if (almacenamiento[i] != null) {
-				lista += "\n" + almacenamiento[i].getCodigo() + "-" + almacenamiento[i].getNombre();
+			if (almacenamientoSinNull[i] != null) {
+				lista += "\n" + almacenamientoSinNull[i].getCodigo() + "-" + almacenamientoSinNull[i].getNombre();
 			}
 		}
 
@@ -72,7 +74,7 @@ public class Controladora {
 
 	public boolean almacenarJuego(String codigo, String nombre, double precio, int cantidad, int genero) {
 
-		//Juego nuevoProducto = 
+		// Juego nuevoProducto =
 
 		for (int i = 0; i < almacenamiento.length; i++) {
 
@@ -140,7 +142,7 @@ public class Controladora {
 		almacenarConsola("1", "PlayStation 6", 7000000, 12, "Sony");
 		almacenarJuego("3", "GTA 6", 400000, 20, 3);
 		almacenarConsola("2", "Nintendo Switch 2", 3000000, 6, "Nintendo");
-	
+
 	}
 
 	public boolean modificarPrecioProducto(String codigo, double precio) {
@@ -215,81 +217,80 @@ public class Controladora {
 
 	}
 
-	public String contarTipoProducto(){
+	public String contarTipoProducto() {
 
 		String msg = "";
 		int contadorJuego = 0;
 		int contadorConsola = 0;
 
-		for(int i=0; i<almacenamiento.length;i++){
+		for (int i = 0; i < almacenamiento.length; i++) {
 
-			if(almacenamiento[i]!=null){
+			if (almacenamiento[i] != null) {
 
-				if(almacenamiento[i] instanceof Juego){
+				if (almacenamiento[i] instanceof Juego) {
 					contadorJuego++;
-				}else if(almacenamiento[i] instanceof Consola){
+				} else if (almacenamiento[i] instanceof Consola) {
 					contadorConsola++;
 				}
 			}
 		}
 
-		msg+="El inventario esta compuesto de la siguiente manera:"+
-			 "\nJuegos: "+contadorJuego +
-			 "\nConsolas: "+contadorConsola;
+		msg += "El inventario esta compuesto de la siguiente manera:" +
+				"\nJuegos: " + contadorJuego +
+				"\nConsolas: " + contadorConsola;
 
 		return msg;
 
 	}
 
-	public String consultarProductoConMasUnidades(){
+	public String consultarProductoConMasUnidades() {
 
 		String msg = "";
 		int maximo = 0;
 		int indice = 0;
 
-		for(int i=0;i<almacenamiento.length;i++){
+		for (int i = 0; i < almacenamiento.length; i++) {
 
-			if(almacenamiento[i]!=null){
+			if (almacenamiento[i] != null) {
 
-				if(maximo<almacenamiento[i].getCantidadDisponible()){
+				if (maximo < almacenamiento[i].getCantidadDisponible()) {
 
 					maximo = almacenamiento[i].getCantidadDisponible();
 					indice = i;
 
 				}
 
-
 			}
 
 		}
 
-		msg+= "El Producto con mas unidades es: "+almacenamiento[indice].getNombre()+" con "+maximo+" unidades.";
-
+		msg += "El Producto con mas unidades es: " + almacenamiento[indice].getNombre() + " con " + maximo
+				+ " unidades.";
 
 		return msg;
 	}
 
-	public String consultarMarcaDeConsolaConMasUnidades(){
+	public String consultarMarcaDeConsolaConMasUnidades() {
 
 		String msg = "";
 		int maximo = 0;
 		int indice = 0;
 		String marca = "";
 
-		for(int i=0;i<almacenamiento.length;i++){
+		for (int i = 0; i < almacenamiento.length; i++) {
 
-			if(almacenamiento[i]!=null){
+			if (almacenamiento[i] != null) {
 
-				if(almacenamiento[i] instanceof Consola){
+				if (almacenamiento[i] instanceof Consola) {
 
-					if(maximo<almacenamiento[i].getCantidadDisponible()){
+					if (maximo < almacenamiento[i].getCantidadDisponible()) {
 
 						maximo = almacenamiento[i].getCantidadDisponible();
 						indice = i;
-	
+
 					}
 
-					marca = ((Consola)almacenamiento[indice]).getMarca();
+					marca = ((Consola) almacenamiento[indice]).getMarca();
 
 				}
 
@@ -297,19 +298,28 @@ public class Controladora {
 
 		}
 
-		msg+= "La Marca con mas unidades es: "+marca+" con "+maximo+" unidades.";
-
+		msg += "La Marca con mas unidades es: " + marca + " con " + maximo + " unidades.";
 
 		return msg;
 	}
 
-	public void ordenarAlamacenamiento(){
+	public Producto[] ordenarAlamacenamiento() {
 
-		Arrays.sort(almacenamiento);
+		// Ubica los null al final del arreglo
+		int i = 0;
+		for (int j = 0; j < almacenamiento.length; j++) {
+			if (almacenamiento[j] != null) {
+				almacenamiento[i] = almacenamiento[j];
+				i++;
+			}
+
+		}
+
+		Producto[] almacenamientoSinNull = Arrays.copyOf(almacenamiento, i); // Crea una copia hasta el último indice no null
+		Arrays.sort(almacenamientoSinNull); // Ordena el arreglo resultante
+
+		return almacenamientoSinNull;
 
 	}
-
-
-
 
 }
