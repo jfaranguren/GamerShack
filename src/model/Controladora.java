@@ -88,7 +88,7 @@ public class Controladora {
 
 			if (almacenamiento[i] == null) {
 
-				almacenamiento[i] = new Consola(codigo, nombre, precio, cantidad, marca); // Upcasting
+				almacenamiento[i] = new Consola(codigo, nombre, precio, cantidad, marca); //Polimorfismo + Upcasting
 				return true;
 
 			} else if (almacenamiento[i].getCodigo().equals(codigo)) {
@@ -122,7 +122,7 @@ public class Controladora {
 
 			if (almacenamiento[i] == null) {
 
-				almacenamiento[i] = new Juego(codigo, nombre, precio, cantidad, Genero.values()[genero - 1]); // Upcasting
+				almacenamiento[i] = new Juego(codigo, nombre, precio, cantidad, Genero.values()[genero - 1]); //Polimorfismo + Upcasting
 				return true;
 
 			} else if (almacenamiento[i].getCodigo().equals(codigo)) {
@@ -184,7 +184,7 @@ public class Controladora {
 			return "El Producto no se encuentra";
 		}
 
-		return temporal.toString();
+		return temporal.toString(); //Polimorfismo + Despacho dinamico
 
 	}
 
@@ -395,13 +395,13 @@ public class Controladora {
 
 				if (almacenamiento[i] instanceof Consola) {
 
-					String marca = ((Consola) almacenamiento[i]).getMarca();
+					String marca = ((Consola) almacenamiento[i]).getMarca(); //Polimorfismo + Downcasting
 
 					for (int j = 0; j < almacenamiento.length; j++) {
 
 						if (almacenamiento[j] instanceof Consola) {
 
-							if (((Consola) almacenamiento[j]).getMarca().equals(marca)) {
+							if (((Consola) almacenamiento[j]).getMarca().equals(marca)) { //Polimorfismo + Downcasting
 
 								acumuladoMarca += almacenamiento[j].getCantidadDisponible();
 
