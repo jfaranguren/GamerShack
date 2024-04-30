@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"model","l":"Categoria"},{"p":"model","l":"Consola"},{"p":"model","l":"Controladora"},{"p":"ui","l":"Ejecutable"},{"p":"model","l":"Genero"},{"p":"model","l":"Juego"},{"p":"model","l":"Producto"},{"p":"model","l":"Taxable"},{"p":"model","l":"Venta"}];updateSearchResults();

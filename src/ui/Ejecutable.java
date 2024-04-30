@@ -30,14 +30,15 @@ public class Ejecutable {
 
 		do {
 
-			System.out.println("Bienvenido al Sofware de Inventario de GamerShack");
+			System.out.println("\nBienvenido al Sofware de Inventario de GamerShack");
 			System.out.println("1) Registrar Producto");
 			System.out.println("2) Consultar Producto por Codigo");
 			System.out.println("3) Cambiar precio de Producto registrado");
 			System.out.println("4) Borrar Producto registrado");
 			System.out.println("5) Realizar una venta");
 			System.out.println("6) Consultar composicion del inventario");
-			System.out.println("7) Consultar producto con más unidades");
+			System.out.println("7) Consultar Producto con más unidades disponibles");
+			System.out.println("8) Consultar Marca de Consola con más unidades disponibles");
 			System.out.println("0) Salir");
 			int option = reader.nextInt();
 
@@ -69,7 +70,10 @@ public class Ejecutable {
 
 				case 7:
 					System.out.println(controller.consultarProductoConMasUnidades());
-					;
+					break;
+
+				case 8:
+					System.out.println(controller.consultarMarcaDeConsolaConMasUnidades());
 					break;
 
 				case 0:
