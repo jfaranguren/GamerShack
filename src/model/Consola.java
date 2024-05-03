@@ -1,11 +1,13 @@
 package model;
 
+import java.util.Calendar;
+
 public class Consola extends Producto {
 
     private String marca;
 
-    public Consola(String codigo, String nombre, double precio, int cantidadDisponible, String marca) {
-        super(codigo, nombre, precio, cantidadDisponible);
+    public Consola(String codigo, String nombre, double precio, Calendar fecha, int cantidadDisponible, String marca) {
+        super(codigo, nombre, precio, fecha, cantidadDisponible);
         this.marca = marca;
     }
 
@@ -17,10 +19,11 @@ public class Consola extends Producto {
         this.marca = marca;
     }
 
+    
+
     @Override
     public String toString() {
-        return "Consola [marca=" + marca + ", getCodigo()=" + getCodigo() + ", getNombre()=" + getNombre()
-                + ", getPrecio()=" + getPrecio() + "]";
+        return "Consola [marca=" + marca + "]";
     }
 
     @Override

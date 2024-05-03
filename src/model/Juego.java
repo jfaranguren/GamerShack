@@ -1,11 +1,13 @@
 package model;
 
+import java.util.Calendar;
+
 public class Juego extends Producto {
 
     private Genero genero;
 
-    public Juego(String codigo, String nombre, double precio, int cantidadDisponible, Genero genero) {
-        super(codigo, nombre, precio, cantidadDisponible);
+    public Juego(String codigo, String nombre, double precio,Calendar fecha, int cantidadDisponible, Genero genero) {
+        super(codigo, nombre, precio,fecha, cantidadDisponible);
         this.genero = genero;
     }
 

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class Controladora {
 
@@ -82,13 +83,21 @@ public class Controladora {
 	 * @param marca    String, la marca de la Consola
 	 * @return boolean true si logra almacenar el objeto, false en caso contrario
 	 */
-	public boolean almacenarConsola(String codigo, String nombre, double precio, int cantidad, String marca) {
+	public boolean almacenarConsola(String codigo, String nombre, double precio, String fecha, int cantidad, String marca) {
+
+		String[] arregloFecha = fecha.split("-");
+		int dia = Integer.parseInt(arregloFecha[0]);
+		int mes = Integer.parseInt(arregloFecha[1])-1;
+		int anio = Integer.parseInt(arregloFecha[2]);
+
+		Calendar nuevaFecha = Calendar.getInstance();
+		nuevaFecha.set(anio,mes,dia);
 
 		for (int i = 0; i < almacenamiento.length; i++) {
 
 			if (almacenamiento[i] == null) {
 
-				almacenamiento[i] = new Consola(codigo, nombre, precio, cantidad, marca); //Polimorfismo + Upcasting
+				almacenamiento[i] = new Consola(codigo, nombre, precio, nuevaFecha, cantidad, marca); //Polimorfismo + Upcasting
 				return true;
 
 			} else if (almacenamiento[i].getCodigo().equals(codigo)) {
@@ -116,13 +125,21 @@ public class Controladora {
 	 *                 Juego
 	 * @return boolean true si logra almacenar el objeto, false en caso contrario
 	 */
-	public boolean almacenarJuego(String codigo, String nombre, double precio, int cantidad, int genero) {
+	public boolean almacenarJuego(String codigo, String nombre, double precio, String fecha, int cantidad, int genero) {
 
+		String[] arregloFecha = fecha.split("-");
+		int dia = Integer.parseInt(arregloFecha[0]);
+		int mes = Integer.parseInt(arregloFecha[1])-1;
+		int anio = Integer.parseInt(arregloFecha[2]);
+
+		Calendar nuevaFecha = Calendar.getInstance();
+		nuevaFecha.set(anio,mes,dia);
+	
 		for (int i = 0; i < almacenamiento.length; i++) {
 
 			if (almacenamiento[i] == null) {
 
-				almacenamiento[i] = new Juego(codigo, nombre, precio, cantidad, Genero.values()[genero - 1]); //Polimorfismo + Upcasting
+				almacenamiento[i] = new Juego(codigo, nombre, precio, nuevaFecha, cantidad, Genero.values()[genero - 1]); //Polimorfismo + Upcasting
 				return true;
 
 			} else if (almacenamiento[i].getCodigo().equals(codigo)) {
@@ -193,10 +210,10 @@ public class Controladora {
 	 */
 	public void crearCasosDePrueba() {
 
-		almacenarConsola("1", "PlayStation 6", 7000000, 12, "Sony");
-		almacenarJuego("3", "GTA 6", 400000, 20, 3);
-		almacenarConsola("2", "Nintendo Switch 2", 3000000, 6, "Nintendo");
-		almacenarConsola("4", "Nintendo Switch", 1500000, 12, "Nintendo");
+		almacenarConsola("1", "PlayStation 6", 7000000,"02-02-2023", 12, "Sony");
+		almacenarJuego("3", "GTA 6", 400000,"31-02-2023", 20, 3);
+		almacenarConsola("2", "Nintendo Switch 2", 3000000,"15-01-2023", 6, "Nintendo");
+		almacenarConsola("4", "Nintendo Switch", 1500000,"01-02-2024", 12, "Nintendo");
 
 	}
 

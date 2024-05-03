@@ -131,6 +131,10 @@ public class Ejecutable {
 		System.out.println("Digite el precio del producto");
 		double precio = reader.nextDouble();
 
+		reader.nextLine(); // Correccion del bug del Scanner
+		System.out.println("Por favor digite la fecha (dd-mm-aaaa)");
+		String fecha = reader.nextLine();
+
 		System.out.println("Seleccione el genero del producto");
 		System.out.println(controller.listaGenero());
 		int genero = reader.nextInt();
@@ -138,7 +142,7 @@ public class Ejecutable {
 		System.out.println("Digite la cantidad disponible del producto");
 		int cantidad = reader.nextInt();
 
-		boolean resultado = controller.almacenarJuego(codigo, nombre, precio, cantidad, genero);
+		boolean resultado = controller.almacenarJuego(codigo, nombre, precio, fecha, cantidad, genero);
 
 		if (resultado) {
 			System.out.println("Producto registrado exitosamente");
@@ -161,7 +165,9 @@ public class Ejecutable {
 		System.out.println("Digite el precio del producto");
 		double precio = reader.nextDouble();
 
-		reader.nextLine();// Correccion del bug del Scanner
+		reader.nextLine(); // Correccion del bug del Scanner
+		System.out.println("Por favor digite la fecha (dd-mm-aaaa)");
+		String fecha = reader.nextLine();
 
 		System.out.println("Digite la marca de la consola");
 		String marca = reader.nextLine();
@@ -169,7 +175,7 @@ public class Ejecutable {
 		System.out.println("Digite la cantidad disponible del producto");
 		int cantidad = reader.nextInt();
 
-		boolean resultado = controller.almacenarConsola(codigo, nombre, precio, cantidad, marca);
+		boolean resultado = controller.almacenarConsola(codigo, nombre, precio, fecha, cantidad, marca);
 
 		if (resultado) {
 			System.out.println("Producto registrado exitosamente");
